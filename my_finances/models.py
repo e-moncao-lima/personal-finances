@@ -19,7 +19,7 @@ class Income(models.Model):
         SEMESTER = 6, 'SEMESTER'
         YEAR = 7, 'YEAR'
 
-    value = models.FloatField()
+    value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     income_type = models.PositiveSmallIntegerField(choices=IncomeTypes.choices)
     recurrent = models.BooleanField(default=False)
@@ -57,7 +57,7 @@ class Outcome(models.Model):
         SEMESTER = 6, 'SEMESTER'
         YEAR = 7, 'YEAR'
 
-    value = models.FloatField()
+    value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     outcome_type = models.PositiveSmallIntegerField(choices=OutcomeTypes.choices)
     recurrent = models.BooleanField(default=False)
@@ -77,7 +77,7 @@ class Balance(models.Model):
         CURRENT = 1, 'CURRENT'
         SAVINGS = 2, 'SAVINGS'
 
-    value = models.FloatField()
+    value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     balance_type = models.CharField(max_length=64)
     created_at = models.DateTimeField(auto_now_add=True)
