@@ -13,5 +13,5 @@ class MyApp(models.Model):
         return f"MyApp {self.id} {self.name}"
     
     class Meta:
-        verbose_name_plural = 'my apps'
+        verbose_name_plural = 'my_apps'
         ordering = ['name']

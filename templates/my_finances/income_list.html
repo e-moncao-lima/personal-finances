@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Incomes</h1>
+    <ul>
+        {% for income in income_list %}
+            <li>{{ income.date|date }} - {{ income.income_type }} - ${{ income.value }} - Repetitive: {{ income.recurrent }}</li>
+        {% if income.recurrent %}
+            every {{ income.recurrency_time }} {{ income.recurrency_interval }}
+        {% endif %}
+        {% empty %}
+            <li>No incomes yet</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
