@@ -2,16 +2,27 @@
 
 {% block content %}
 
-    <h1>Incomes</h1>
-    <ul>
-        {% for income in income_list %}
-            <li>{{ income.date|date }} - {{ income.income_type }} - ${{ income.value }} - Repetitive: {{ income.recurrent }}</li>
-        {% if income.recurrent %}
-            every {{ income.recurrency_time }} {{ income.recurrency_interval }}
-        {% endif %}
-        {% empty %}
-            <li>No incomes yet</li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1>Incomes</h1>
+            <ul>
+                {% for income in income_list %}
+                    <li>
+                        <a href="{% url 'my_finances:income_detail' income.pk %}">
+                            {{ income.date|date }} - {{ income.get_income_type_display }} - ${{ income.value }} - Repetitive: {{ income.recurrent }}
+                            {% if income.recurrent %}
+                                every {{ income.recurrency_time }} {{ income.get_recurrency_interval_display }}
+                            {% endif %}
+                        </a>
+                    </li>
+                
+                {% empty %}
+                    <li>No incomes yet</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    
 
 {% endblock content %}

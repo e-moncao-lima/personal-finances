@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Income
 
 
@@ -11,7 +11,23 @@ class IncomeListView(ListView):
     paginate_by = 100
 
 
+class IncomeDetailView(DetailView):
+    model = Income
+
+
 class IncomeCreateView(CreateView):
     model = Income
     fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
-    success_url = reverse_lazy('my_finances.income_list')
+    success_url = reverse_lazy('my_finances:income_list')
+
+
+class IncomeUpdateView(UpdateView):
+    model = Income
+    fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
+    success_url = reverse_lazy('my_finances:income_list')
+
+
+class IncomeDeleteView(DeleteView):
+    model = Income
+    fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
+    success_url = reverse_lazy('my_finances:income_list')

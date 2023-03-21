@@ -5,8 +5,8 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <form method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit">
+            <p>Are sure you wnat to delete "{{ income }}"</p>
+            <input type="submit" value="Confirm">
         </form>
     </div>
 </div>
