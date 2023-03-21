@@ -1,8 +1,10 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib import messages
 from .models import Income
+from .forms import IncomeForm
 
 
 # Create your views here.
@@ -17,17 +19,25 @@ class IncomeDetailView(DetailView):
 
 class IncomeCreateView(CreateView):
     model = Income
-    fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
-    success_url = reverse_lazy('my_finances:income_list')
+    form_class = IncomeForm
+
+    def get_success_url(self) -> str:
+        messages.success(self.request, 'Income created successfully!')
+        return reverse_lazy('my_finances:income_list')
 
 
 class IncomeUpdateView(UpdateView):
     model = Income
-    fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
-    success_url = reverse_lazy('my_finances:income_list')
+    form_class = IncomeForm
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, 'Income updated successfully!')
+        return reverse('my_finances:income_detail', kwargs={'pk': self.object.pk})
 
 
 class IncomeDeleteView(DeleteView):
     model = Income
-    fields = ['value', 'date', 'income_type', 'recurrent', 'recurrency_interval', 'recurrency_time']
-    success_url = reverse_lazy('my_finances:income_list')
+    
+    def get_success_url(self) -> str:
+        messages.success(self.request, 'Income deleted successfully!')
+        return reverse_lazy('my_finances:income_list')

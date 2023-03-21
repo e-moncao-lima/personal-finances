@@ -4,6 +4,14 @@
 
 <div class="row">
     <div class="col-lg-8 mx-auto">
+        {% comment %} {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} {% endcomment %}
+
         <h1>Income {{ income.pk }} </h1>
         <ul>
             <li>Date: {{ income.date|date }}</li>
