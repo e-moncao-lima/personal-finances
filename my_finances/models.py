@@ -25,6 +25,7 @@ class Income(models.Model):
     recurrent = models.BooleanField(default=False)
     recurrency_interval = models.PositiveSmallIntegerField(choices=RepetitionInterval.choices, default=1)
     recurrency_time = models.PositiveSmallIntegerField(default=0)
+    comment = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
@@ -63,6 +64,7 @@ class Outcome(models.Model):
     recurrent = models.BooleanField(default=False)
     recurrency_interval = models.PositiveSmallIntegerField(choices=RepetitionInterval.choices, default=1)
     recurrency_time = models.PositiveSmallIntegerField(default=0)
+    comment = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

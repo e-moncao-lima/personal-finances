@@ -11,6 +11,9 @@ from .forms import IncomeForm
 class IncomeListView(ListView):
     model = Income
     paginate_by = 100
+    # template_name = 'my_finances/income_list.html'
+    # queryset = Income.objects.all()
+    # context_object_name = 'income_list'
 
 
 class IncomeDetailView(DetailView):

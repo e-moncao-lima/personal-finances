@@ -14,7 +14,7 @@
         <div class="col-lg-8 mx-auto">
             <h1>Incomes</h1>
             <ul>
-                {% for income in income_list %}
+                {% for income in object_list %}
                     <li>
                         <a href="{% url 'my_finances:income_detail' income.pk %}">
                             {{ income.date|date }} - {{ income.get_income_type_display }} - ${{ income.value }} - Repetitive: {{ income.recurrent }}
